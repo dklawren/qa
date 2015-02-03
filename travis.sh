@@ -72,7 +72,7 @@ fi
 # Package installation section
 EXTRA_PKGS=""
 if [ "$DB" = "pg" ]; then
-    EXTRA_PKGS="postgresql-server-dev"
+    EXTRA_PKGS="postgresql-server-dev-9.3"
 fi
 if [ "$DB" = "mysql" ]; then
    EXTRA_PKGS="libmysqlclient-dev"
