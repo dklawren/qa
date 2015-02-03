@@ -72,7 +72,7 @@ fi
 # Package installation section
 EXTRA_PKGS=""
 if [ "$DB" = "pg" ]; then
-    EXTRA_PKGS="postgresql-server-dev-9.1 postgresql-common"
+    EXTRA_PKGS="postgresql-server-dev"
 fi
 if [ "$DB" = "mysql" ]; then
    EXTRA_PKGS="libmysqlclient-dev"
@@ -92,7 +92,6 @@ cpanm DateTime
 cpanm DBD::mysql
 cpanm DBD::Pg
 cpanm Module::Build # Need latest build
-cpanm PgCommon
 cpanm Software::License # Needed by Module::Build to find proper Mozilla license
 cpanm Test::WWW::Selenium # For webservice and selenium tests
 cpanm XMLRPC::Lite # Due to the SOAP::Lite split
