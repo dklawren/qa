@@ -29,7 +29,7 @@ if [ "$TEST_SUITE" = "sanity" ]; then
     cpanm Email::Sender::Simple
     cpanm File::Slurp
     cpanm JSON::XS
-    cpanm Math::Random::ISAACa
+    cpanm Math::Random::ISAAC
     cpanm Pod::Coverage
     cpanm Template
     cpanm URI
