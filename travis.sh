@@ -12,7 +12,7 @@ cd $TRAVIS_BUILD_DIR
 # Allow alias expansion inside shell scripts
 shopt -s expand_aliases
 
-alias cpanm='cpanm --quiet --notest --reinstall'
+alias cpanm='cpanm --quiet --notest --skip-satisfied'
 
 # Basic sanity tests
 if [ "$TEST_SUITE" = "sanity" ]; then
@@ -38,7 +38,7 @@ if [ "$TEST_SUITE" = "sanity" ]; then
     cpanm Template
     cpanm Test::Taint
     cpanm Text::Markdown
-    cpanm TheSchwartx
+    cpanm TheSchwartz
     cpanm URI
     cpanm XMLRPC::Lite
     echo -en 'travis_fold:end:perl_dependencies\r'
@@ -72,7 +72,7 @@ fi
 # Package installation section
 EXTRA_PKGS=""
 if [ "$DB" = "pg" ]; then
-    EXTRA_PKGS="postgresql-server-dev-9.1"
+    EXTRA_PKGS="postgresql-server-dev-9.1 postgresql-common"
 fi
 if [ "$DB" = "mysql" ]; then
    EXTRA_PKGS="libmysqlclient-dev"
@@ -87,14 +87,15 @@ echo -en 'travis_fold:end:packages\r'
 # Install dependencies from Build.PL
 echo -en 'travis_fold:start:perl_dependencies\r'
 echo "== Installing Perl dependencies"
+cpanm Cache::Memcached::GetParserXS # FIXME test-checksetup.pl fails without this
 cpanm DateTime
-cpanm Module::Build # Need latest build
-cpanm Software::License # Needed by Module::Build to find proper Mozilla license
 cpanm DBD::mysql
 cpanm DBD::Pg
-cpanm Cache::Memcached::GetParserXS # FIXME test-checksetup.pl fails without this
-cpanm XMLRPC::Lite # Due to the SOAP::Lite split
+cpanm Module::Build # Need latest build
+cpanm PgCommon
+cpanm Software::License # Needed by Module::Build to find proper Mozilla license
 cpanm Test::WWW::Selenium # For webservice and selenium tests
+cpanm XMLRPC::Lite # Due to the SOAP::Lite split
 cpanm --installdeps --with-recommends .  # Install dependencies reported by Build.PL
 echo -en 'travis_fold:end:perl_dependencies\r'
 
