@@ -18,7 +18,7 @@ alias cpanm='cpanm --quiet --notest --reinstall'
 if [ "$TEST_SUITE" = "sanity" ]; then
     echo -en 'travis_fold:start:perl_dependencies\r'
     echo "== Installing Perl dependencies"
-    cpanm DateTime
+    cpanm TimeDate 
     cpanm Pod::Coverage
     echo -en 'travis_fold:end:perl_dependencies\r'
 
