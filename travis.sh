@@ -83,6 +83,7 @@ cpanm DBD::mysql
 cpanm DBD::Pg
 cpanm Cache::Memcached::GetParserXS # FIXME test-checksetup.pl fails without this
 cpanm XMLRPC::Lite # Due to the SOAP::Lite split
+cpanm Test::WWW::Selenium # For webservice and selenium tests
 cpanm --installdeps --with-recommends .  # Install dependencies reported by Build.PL
 echo -en 'travis_fold:end:perl_dependencies\r'
 
@@ -159,11 +160,6 @@ cd $TRAVIS_BUILD_DIR/qa/t
 
 # Selenium UI Tests
 if [ "$TEST_SUITE" = "selenium" ]; then
-    echo -en 'travis_fold:start:extra_perl_dependencies\r'
-    echo "== Installing extra Perl dependencies"
-    cpanm Test::WWW::Selenium # For webservice and selenium tests
-    echo -en 'travis_fold:end:extra_perl_dependencies\r'
-
     # Start the virtual frame buffer
     echo "== Starting virtual frame buffer"
     export DISPLAY=:99.0
