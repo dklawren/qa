@@ -17,19 +17,30 @@ alias cpanm='cpanm --quiet --notest --reinstall'
 # Basic sanity tests
 if [ "$TEST_SUITE" = "sanity" ]; then
     echo -en 'travis_fold:start:perl_dependencies\r'
-    echo "== Installing Perl dependencies"
+    echo "== Installing Perl dependencies"a
+    cpanm Authen::Radius
     cpanm DBI
+    cpanm Daemon::Generic
     cpanm Date::Format
     cpanm DateTime::TimeZone
     cpanm Email::Address
     cpanm Email::MIME
+    cpanm Email::Reply
     cpanm Email::Sender::Simple
     cpanm File::Slurp
+    cpanm JSON::RPC
     cpanm JSON::XS
+    cpanm LWP::UserAgent
     cpanm Math::Random::ISAAC
+    cpanm Net::LDAP
+    cpanm PatchReader
     cpanm Pod::Coverage
     cpanm Template
+    cpanm Test::Taint
+    cpanm Text::Markdown
+    cpanm TheSchwartx
     cpanm URI
+    cpanm XMLRPC::Lite
     echo -en 'travis_fold:end:perl_dependencies\r'
 
     echo "== Running sanity tests"
