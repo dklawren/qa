@@ -12,7 +12,7 @@ cd $TRAVIS_BUILD_DIR
 # Allow alias expansion inside shell scripts
 shopt -s expand_aliases
 
-alias cpanm='cpanm --quiet --notest --skip-satisfied'
+alias cpanm='cpanm --quiet --notest --reinstall'
 
 # Basic sanity tests
 if [ "$TEST_SUITE" = "sanity" ]; then
