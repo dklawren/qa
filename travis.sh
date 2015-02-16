@@ -73,10 +73,10 @@ fi
 # Package installation section
 EXTRA_PKGS=""
 if [ "$DB" = "pg" ]; then
-    EXTRA_PKGS="postgresql-server-dev-9.1 postgresql-client-common"
+    EXTRA_PKGS="postgresql-server-dev-9.1"
 fi
 if [ "$DB" = "mysql" ]; then
-   EXTRA_PKGS="libmysqlclient-dev"
+    EXTRA_PKGS="libmysqlclient-dev"
 fi
 
 echo -en 'travis_fold:start:packages\r'
@@ -88,7 +88,6 @@ echo -en 'travis_fold:end:packages\r'
 # Install dependencies from Build.PL
 echo -en 'travis_fold:start:perl_dependencies\r'
 echo "== Installing Perl dependencies"
-cpanm Cache::Memcached::GetParserXS # FIXME test-checksetup.pl fails without this
 cpanm DateTime
 if [ "$DB" = "pg" ]; then
     cpanm DBD::Pg
@@ -96,6 +95,7 @@ fi
 if [ "$DB" = "mysql" ]; then
     cpanm DBD::mysql
 fi
+cpanm Cache::Memcached::GetParserXS # FIXME test-checksetup.pl fails without this
 cpanm Module::Build # Need latest build
 cpanm Software::License # Needed by Module::Build to find proper Mozilla license
 cpanm Test::WWW::Selenium # For webservice and selenium tests
