@@ -73,7 +73,7 @@ fi
 # Package installation section
 EXTRA_PKGS=""
 if [ "$DB" = "pg" ]; then
-    EXTRA_PKGS="postgresql-server-dev-9.3 postgresql-client-common"
+    EXTRA_PKGS="postgresql-server-dev-9.1 postgresql-client-common"
 fi
 if [ "$DB" = "mysql" ]; then
    EXTRA_PKGS="libmysqlclient-dev"
@@ -123,19 +123,6 @@ if [ "$TEST_SUITE" == "checksetup" ]; then
     sed -e "s?%DB_NAME%?bugs_checksetup?g" --in-place qa/config/checksetup_answers.txt
 else
     sed -e "s?%DB_NAME%?bugs?g" --in-place qa/config/checksetup_answers.txt
-fi
-
-# MySQL related setup
-if [ "$DB" = "mysql" ]; then
-    echo "== Setting up MySQL"
-    mysql -u root mysql -e "GRANT ALL PRIVILEGES ON *.* TO bugs@localhost IDENTIFIED BY 'bugs'; FLUSH PRIVILEGES;"
-fi
-
-# PostgreSQL related setup
-if [ "$DB" = "pg" ]; then
-    echo "== Setting up PostgreSQL"
-    sudo -u postgres createuser --superuser bugs
-    sudo -u postgres psql -U postgres -d postgres -c "alter user bugs with password 'bugs';"
 fi
 
 # Checksetup test which tests schema changes from older versions to the current
