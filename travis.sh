@@ -95,6 +95,7 @@ cpanm Module::Build # Need latest build
 cpanm Software::License # Needed by Module::Build to find proper Mozilla license
 cpanm Test::WWW::Selenium # For webservice and selenium tests
 cpanm XMLRPC::Lite # Due to the SOAP::Lite split
+cpanm File::Slurp # For checksetup.pl to work
 
 CPANM_DB_EXCLUDES="--without-feature oracle --without-feature sqlite"
 if [ "$DB" = "pg" ]; then
