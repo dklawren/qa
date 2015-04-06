@@ -409,7 +409,7 @@ $sel->click_ok("link=My bugs from QA_Selenium");
 $sel->wait_for_page_to_load_ok(WAIT_TIME);
 $sel->title_is("Bug List: My bugs from QA_Selenium");
 $sel->click_ok("//button[text()[contains(., \"Forget Search 'My bugs from QA_Selenium'\")]]");
-My bugs from QA_Selenium
+# My bugs from QA_Selenium
 $sel->wait_for_page_to_load_ok(WAIT_TIME);
 $sel->title_is("Search is gone");
 $sel->is_text_present_ok("OK, the My bugs from QA_Selenium search is gone");
